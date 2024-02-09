@@ -8,5 +8,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "knex": "^3.1.0",
+    "mysql": "^2.18.1"
+  }
 }
