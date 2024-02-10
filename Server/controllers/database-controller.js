@@ -1,7 +1,7 @@
 const knex = require('knex')(require('../knexfile'));
 
 const index = (_req, res) => {
-  knex('customers')
+  knex('seating')
     .then((data) => {
       res.status(200).json(data);
     })

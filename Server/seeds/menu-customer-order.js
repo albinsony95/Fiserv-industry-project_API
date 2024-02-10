@@ -1,10 +1,10 @@
 // import seed data files, arrays of objects
 const customerData = require('../seed-data/customers');
 const menuData = require('../seed-data/menu_items');
-const seatingData = require('../seed-data/seating');
+const orderData = require('../seed-data/order');
 
 exports.seed = function (knex) {
-  return knex('seating').del()
+  return knex('order').del()
     .then(function () {
         return knex('menu_items').del();
       })
@@ -18,7 +18,7 @@ exports.seed = function (knex) {
       return knex('menu_items').insert(menuData);
     })
     .then(function () {
-      return knex('seating').insert(seatingData);
+      return knex('order').insert(orderData);
     });
     
     
