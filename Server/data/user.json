@@ -12,6 +12,12 @@
                         "name":"smoked-chesse-burger",
                         "description":"smoked bacon and burger",
                         "price":"17.99"
+                    },
+                    {
+                        "id":"6f4463cf-6959-4f88-8cd7-37507326d9ba",
+                        "name":"smoked-chesse-burger",
+                        "description":"smoked bacon and burger",
+                        "price":"17.99"
                     }
                 ]
             },

@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 8080;
 const cors = require("cors");
+const RecieptRoutes = require("./routes/Recipt_summary_route")
 // const path = require('path');
 const userPage = require("./routes/userpage_route");
 const paymentPage = require("./routes/paymentpage_route");
@@ -13,6 +14,8 @@ app.use((req, res, next) => {
   console.log("Link validation middleware");
   next();
 });
+
+app.use("/Reciept", RecieptRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the visual world");
