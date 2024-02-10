@@ -22,13 +22,13 @@ exports.up = function (knex) {
         table.integer("ordering_party").notNullable().defaultTo(0);
         table.string("special_instructions", 200);
 
-        // tables
+        // table
         // .foreign("menu_item_id")
         // .unsigned()
         // .references("menu_items.item_id")
         // .onUpdate("CASCADE")
         // .onDelete("CASCADE");
-        // tables
+        // table
         // .foreign("ordering_party")
         // .unsigned()
         // .references("customers.customer_id")
