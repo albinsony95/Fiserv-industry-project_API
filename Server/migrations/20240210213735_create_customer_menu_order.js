@@ -9,6 +9,7 @@ exports.up = function (knex) {
       table.string('item_name', 60).notNullable();
       table.string('item_description', 200);
       table.decimal('price', 10, 2);
+      table.string('item_image', 2048);
     });
   })
   .then(() => {
@@ -22,9 +23,10 @@ exports.up = function (knex) {
   })
   .then(() => {
     // Table to house the items ordered for a particular physical table in the service area
-    return knex.schema.createTable('seating', function(table) {
+    return knex.schema.createTable('order', function(table) {
       table.increments('order_id').primary();
       table.integer('menu_item_id').unsigned();
+      table.integer('order_quantity').unsigned();
       table.integer('ordering_party').unsigned();
       table.string('special_instructions', 60);
       table.foreign('menu_item_id').references('menu_items.item_id').onDelete('CASCADE');
