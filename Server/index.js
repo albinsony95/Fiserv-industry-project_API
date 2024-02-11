@@ -6,6 +6,7 @@ const RecieptRoutes = require("./routes/Recipt_summary_route")
 const customersRoutes = require("./routes/customers-routes")
 const menuRoutes = require("./routes/menu-routes")
 const orderRoutes = require("./routes/order-routes")
+const reviewRoutes = require("./routes/review-routes")
 // const path = require('path');
 const userPage = require("./routes/userpage_route");
 const paymentPage = require("./routes/paymentpage_route");
@@ -31,6 +32,7 @@ app.get("/db", (req, res) => {
 app.use('/customers', customersRoutes);
 app.use('/menu', menuRoutes);
 app.use('/order', orderRoutes);
+app.use('/review', reviewRoutes);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
