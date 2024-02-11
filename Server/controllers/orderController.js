@@ -32,7 +32,29 @@ const findOne = (req, res) => {
     });
 }
 
+const add = (req, res) => {
+  if ((req.body.order_quantity <= 0) || !req.body.menu_item_id || !req.body.ordering_party) {
+    return res
+      .status(400)
+      .send("Please check that menu item and ordering party exist and quantity is greater than zero");
+  }
+
+  knex("order")
+    .insert(req.body)
+    .then((result) => {
+      return knex("order")
+        .where({ order_id: result[0] })
+    })
+    .then((createdOrder) => {
+      res.status(201).json(createdOrder);
+    })
+    .catch(() => {
+      res.status(500).json({ message: "Unable to create new order" });
+    })
+};
+
 module.exports = {
   index,
-  findOne
+  findOne,
+  add
 }

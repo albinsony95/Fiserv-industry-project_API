@@ -30,7 +30,29 @@ const findOne = (req, res) => {
     });
 }
 
+const add = (req, res) => {
+  if (!req.body.customer_name) {
+    return res
+      .status(400)
+      .send("Please check that the new customer has a valid name");
+  }
+
+  knex("customers")
+    .insert(req.body)
+    .then((result) => {
+      return knex("customers")
+        .where({ customer_id: result[0] })
+    })
+    .then((createdCustomer) => {
+      res.status(201).json(createdCustomer);
+    })
+    .catch(() => {
+      res.status(500).json({ message: "Unable to add new customer" });
+    })
+};
+
 module.exports = {
   index,
-  findOne
+  findOne,
+  add
 }

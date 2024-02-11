@@ -30,7 +30,29 @@ const findOne = (req, res) => {
     });
 }
 
+const add = (req, res) => {
+  if (!req.body.item_description  || !req.body.item_name || !req.body.price) {
+    return res
+      .status(400)
+      .send("Please check that menu item has a name, description, and price");
+  }
+
+  knex("menu_items")
+    .insert(req.body)
+    .then((result) => {
+      return knex("menu_items")
+        .where({ item_id: result[0] })
+    })
+    .then((createdMenuItem) => {
+      res.status(201).json(createdMenuItem);
+    })
+    .catch(() => {
+      res.status(500).json({ message: "Unable to create new menu item" });
+    })
+};
+
 module.exports = {
   index,
-  findOne
+  findOne,
+  add
 }
