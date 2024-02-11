@@ -51,8 +51,28 @@ const add = (req, res) => {
     })
 };
 
+const update = (req, res) => {
+  knex("menu_items")
+    .where({ item_id: req.params.id })
+    .update(req.body)
+    .then(() => {
+      return knex("menu_items").where({
+        item_id: req.params.id,
+      });
+    })
+    .then((updatedMenuItem) => {
+      res.json(updatedMenuItem[0]);
+    })
+    .catch(() => {
+      res
+        .status(500)
+        .json({ message: `Unable to update menu item with ID: ${req.params.id}` });
+    });
+};
+
 module.exports = {
   index,
   findOne,
-  add
+  add,
+  update
 }

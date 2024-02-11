@@ -53,8 +53,28 @@ const add = (req, res) => {
     })
 };
 
+const update = (req, res) => {
+  knex("order")
+    .where({ order_id: req.params.id })
+    .update(req.body)
+    .then(() => {
+      return knex("order").where({
+        order_id: req.params.id,
+      });
+    })
+    .then((updatedOrder) => {
+      res.json(updatedOrder[0]);
+    })
+    .catch(() => {
+      res
+        .status(500)
+        .json({ message: `Unable to update order item with ID: ${req.params.id}` });
+    });
+};
+
 module.exports = {
   index,
   findOne,
-  add
+  add,
+  update
 }

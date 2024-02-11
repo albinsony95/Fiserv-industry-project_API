@@ -51,8 +51,28 @@ const add = (req, res) => {
     })
 };
 
+const update = (req, res) => {
+  knex("customers")
+    .where({ customer_id: req.params.id })
+    .update(req.body)
+    .then(() => {
+      return knex("customers").where({
+        customer_id: req.params.id,
+      });
+    })
+    .then((updatedCustomer) => {
+      res.json(updatedCustomer[0]);
+    })
+    .catch(() => {
+      res
+        .status(500)
+        .json({ message: `Unable to update customer with ID: ${req.params.id}` });
+    });
+};
+
 module.exports = {
   index,
   findOne,
-  add
+  add,
+  update
 }
