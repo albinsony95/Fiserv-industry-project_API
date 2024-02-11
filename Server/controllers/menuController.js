@@ -70,9 +70,29 @@ const update = (req, res) => {
     });
 };
 
+const remove =  (req, res) => {
+  knex("menu_items")
+    .where({ item_id: req.params.id })
+    .del()
+    .then((result) => {
+      if (result === 0) {
+        return res.status(400).json({
+          message: `Menu item with ID: ${req.params.id} to be deleted not found.`,
+        });
+      }
+
+      // no content response
+      res.status(204).send();
+    })
+    .catch(() => {
+      res.status(500).json({ message: "Unable to delete menu item" });
+    });
+};
+
 module.exports = {
   index,
   findOne,
   add,
-  update
+  update,
+  remove
 }
