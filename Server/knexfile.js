@@ -7,7 +7,7 @@ module.exports = {
     host: "127.0.0.1",
     database: "fiserv_db",
     user: "root",
-    password: "rootroot",
+    password: "lemongrass@88",
     charset: "utf8",
   },
 };
